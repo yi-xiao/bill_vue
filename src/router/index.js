@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import Userlist from '../components/users/Userlist'
 import UserCreate from '../components/users/UserCreate'
 import UserUpdate from '../components/users/UserUpdate'
-import CategoryList from '../components/CategoryList'
-import CategoryUpdate from '../components/CategoryUpdate'
+import CategoryList from '../components/category/CategoryList'
+import CategoryCreate from '../components/category/CategoryCreate'
 
 Vue.use(VueRouter);
 
@@ -37,9 +37,9 @@ const router = new VueRouter({
             component: CategoryList
         },
         {
-            path: '/category/update',
-            name: 'categoryUpdate',
-            component: CategoryUpdate
+            path: '/category/create',
+            name: 'categoryCreate',
+            component: CategoryCreate
         },
     ]
 })

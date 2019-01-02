@@ -18,7 +18,7 @@
         <template slot="title"><i class="el-icon-menu"></i>基础管理</template>
         <el-menu-item-group>
           <el-menu-item index="/category/list">基础列表</el-menu-item>
-          <el-menu-item index="/category/update">基础编辑</el-menu-item>
+          <el-menu-item index="/category/create">新增类目</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">

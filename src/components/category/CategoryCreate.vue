@@ -1,7 +1,7 @@
 <template>
 
 <div class="table">
-    计财处更新
+    计划移出，没有存在的必要
     </div>    
 </template>
 
