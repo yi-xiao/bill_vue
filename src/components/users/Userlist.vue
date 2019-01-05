@@ -42,7 +42,6 @@ export default {
     name: 'Header',
     data() {
         return {
-            userList: [],
             defaultOrigin: ''
         }
     },
@@ -81,12 +80,17 @@ export default {
             return formatDate(date, 'yyyy-MM-dd hh:mm')
         }
     },
+    computed: {
+         userList() {
+             return this.$store.getters.getUserList;
+         }
+    },
     created() {
-        this.defaultOrigin = this.$store.state.defaultOrigin
-        axios.get('/api/user').then(res => {
-            this.userList = res.data
-        })
-        
+        this.defaultOrigin = this.$store.getters.getDefaultOrigin
+        // axios.get('/api/user').then(res => {
+        //     this.userList = res.data
+        // })
+        this.$store.dispatch('getUserList');
     }
 }
 </script>

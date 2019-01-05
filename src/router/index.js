@@ -6,6 +6,11 @@ import UserCreate from '../components/users/UserCreate'
 import UserUpdate from '../components/users/UserUpdate'
 import CategoryList from '../components/category/CategoryList'
 import CategoryCreate from '../components/category/CategoryCreate'
+import RecordList from '../components/record/RecordList'
+import RecordCreate from '../components/record/RecordCreate'
+import RecordUpdate from '../components/record/RecordUpdate'
+import StatisticList from '../components/statistic/StatisticList'
+import StatisticPerson from '../components/statistic/StatisticPerson'
 
 Vue.use(VueRouter);
 
@@ -40,6 +45,31 @@ const router = new VueRouter({
             path: '/category/create',
             name: 'categoryCreate',
             component: CategoryCreate
+        },
+        {
+            path: '/record/list',
+            name: 'recordList',
+            component: RecordList
+        },
+        {
+            path: '/record/create',
+            name: 'recordCreate',
+            component: RecordCreate
+        },
+        {
+            path: '/record/update',
+            name: 'recordUpdate',
+            component: RecordUpdate
+        },
+        {
+            path: '/statistic/list',
+            name: 'statisticList',
+            component: StatisticList
+        },
+        {
+            path: '/statistic/person',
+            name: 'statisticPerson',
+            component: StatisticPerson
         },
     ]
 })

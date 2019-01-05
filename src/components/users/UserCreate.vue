@@ -64,7 +64,11 @@ export default {
         },
         btnText: '创建',
         media_id: 0,
+        defaultOrigin: ''
       }
+    },
+    created() {
+        this.defaultOrigin = this.$store.getters.getDefaultOrigin
     },
     methods: {
       onSubmit(form) {
@@ -95,7 +99,7 @@ export default {
         // this.form.avatar = URL.createObjectURL(file.raw);
         let { path, id }  = file.response.info;
         console.log(path)
-        this.form.avatar = this.$store.state.defaultOrigin+path,
+        this.form.avatar = this.defaultOrigin+path,
         this.media_id = id
       },
       beforeAvatarUpload(file) {

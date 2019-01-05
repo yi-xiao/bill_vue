@@ -76,8 +76,8 @@ export default {
         },
         btnText: '更新',
         selectValue: '',
-        userList: [],
         media_id: 0,
+        defaultOrigin: ''
       }
     },
     methods: {
@@ -91,14 +91,13 @@ export default {
               "nickName": this.form.nickName
           }
           data = qs.stringify(data);
-          this.$refs[form].validate((valid) => {
+          this.$refs[form].validate(async (valid) => {
             if (valid) {
-                axios.post('/api/user/updateUser', data).then(res => {
-                    this.$message('更新成功')
-                    setTimeout(() => {
-                        this.$router.push('/user/list')
-                    },200)
-                })
+                await this.$store.dispatch('updateUserDetail', data);
+                this.$message('更新成功')
+                setTimeout(() => {
+                    this.$router.push('/user/list')
+                },200)
             } else {
                 console.log('error submit!!');
                 return false;
@@ -109,7 +108,7 @@ export default {
         //   console.log(file)
         // this.form.avatar = URL.createObjectURL(file.raw);
          let { path, id }  = file.response.info;
-        this.form.avatar = this.$store.state.defaultOrigin+path,
+        this.form.avatar = this.defaultOrigin+path,
         this.media_id = id
       },
       beforeAvatarUpload(file) {
@@ -134,7 +133,8 @@ export default {
                     this.form.nickName = item.nickName
                     this.form.sex = item.sex+''
                     this.form.birth = new Date(item.birth)
-                    this.form.avatar = this.$store.state.defaultOrigin + item.avatar_info.path
+                    this.form.avatar = this.defaultOrigin + item.avatar_info.path
+                    this.media_id = item.avatar_info.id
                 }
             })
         },
@@ -142,10 +142,17 @@ export default {
             //监控对象某个特定属性的写法
         }
     },
+    computed: {
+         userList() {
+             return this.$store.getters.getUserList;
+         }
+    },
     created() {
-        axios.get('/api/user').then(res => {
-            this.userList = res.data;
-        })
+        this.defaultOrigin = this.$store.getters.getDefaultOrigin
+
+        // axios.get('/api/user').then(res => {
+        //     this.userList = res.data;
+        // })
     }
 }
 </script>

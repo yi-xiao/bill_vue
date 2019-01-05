@@ -38,17 +38,24 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
 export default {
     name: 'CategoryList',
     data() {
         return {
-            dataList: []
+            // dataList: []
         }
     },
+    computed: {
+         dataList() {
+             return this.$store.getters.getTypeList;
+         }
+    },
     created() {
-        axios.get('/api/base').then(res => {
-            this.dataList = res.data
-        })
+        // axios.get('/api/base').then(res => {
+        //     this.dataList = res.data
+        // })
+        this.$store.dispatch('getTypeList');
     },
     methods: {
         createCategory() {
@@ -58,17 +65,15 @@ export default {
                 inputPlaceholder: '在这里输入内容~',
                 inputPattern: /\S+/,
                 inputErrorMessage: '内容不能为空哦！'
-            }).then(({ value }) => {
+            }).then(async ({ value }) => {
                 const info = {
                     "type": value
                 }
-                axios.post('/api/base/updateCategory', info).then(res => {
-                    this.dataList = res.data
-                    this.$message({
-                        type: 'success',
-                        message: '新建成功'
-                    });
-                })
+                await this.updateCategory(info);
+                this.$message({
+                    type: 'success',
+                    message: '新建成功'
+                });
             }).catch(() => {});
         },
         handleClick(data) {
@@ -80,18 +85,16 @@ export default {
                 inputValue: data.type,
                 inputPattern: /\S+/,
                 inputErrorMessage: '内容不能为空哦！'
-            }).then(({ value }) => {
+            }).then(async ({ value }) => {
                 const info = {
                     "id": data.id,
                     "type": value
                 }
-                axios.post('/api/base/updateCategory', info).then(res => {
-                    this.dataList = res.data
-                    this.$message({
-                        type: 'success',
-                        message: '编辑成功'
-                    });
-                })
+                await this.updateCategory(info);
+                this.$message({
+                    type: 'success',
+                    message: '编辑成功'
+                });
             }).catch(() => {});
         },
         handleDelete(data) {
@@ -100,17 +103,16 @@ export default {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
-            }).then(() => {
+            }).then(async () => {
                 //todo...
-                axios.post('/api/base/remove', {"id": data.id }).then(res => {
-                    this.dataList = res.data
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功'
-                    });
-                })
+                await this.removeCategory(data);
+                this.$message({
+                    type: 'success',
+                    message: '删除成功'
+                });
             }).catch(() => {});
-        }
+        },
+        ...mapActions(['updateCategory','removeCategory'])
     }
 }
 </script>

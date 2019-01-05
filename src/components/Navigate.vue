@@ -21,19 +21,19 @@
           <el-menu-item index="/category/create">新增类目</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="3">
+      <el-submenu index="record">
         <template slot="title"><i class="el-icon-tickets"></i>记录管理</template>
         <el-menu-item-group>
-          <el-menu-item index="3-1">记录列表</el-menu-item>
-          <el-menu-item index="3-2">记录添加</el-menu-item>
-          <el-menu-item index="3-3">记录编辑</el-menu-item>
+          <el-menu-item index="/record/list">记录列表</el-menu-item>
+          <el-menu-item index="/record/create">记录添加</el-menu-item>
+          <el-menu-item index="/record/update">记录编辑</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="4">
+      <el-submenu index="statistic">
         <template slot="title"><i class="el-icon-view"></i>统计管理</template>
         <el-menu-item-group>
-          <el-menu-item index="4-1">统计列表</el-menu-item>
-          <el-menu-item index="4-2">个人账单</el-menu-item>
+          <el-menu-item index="/statistic/list">统计列表</el-menu-item>
+          <el-menu-item index="/statistic/person">个人账单</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>

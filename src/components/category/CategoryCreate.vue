@@ -10,3 +10,10 @@ export default {
     name: 'UserUpdate',
 }
 </script>
+
+<style scoped>
+    .update-form-container{
+        width: 400px;
+        padding: 50px;
+    }
+</style>
