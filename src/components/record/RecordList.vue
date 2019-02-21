@@ -29,6 +29,14 @@
                     <span>{{ scope.row.updated_at | formatDate }}</span>
                 </template>
             </el-table-column>
+            <el-table-column
+                    label="操作"
+            >
+                <template slot-scope="scope">
+                    <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
+                    <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
+                </template>
+            </el-table-column>
         </el-table>
     </el-main>
 </template>
@@ -42,16 +50,28 @@
             return {}
         },
         created() {
-            this.getBillList()
+            this.getRecordList()
         },
         computed: {
             ...mapGetters({
                 defaultOrigin: 'getDefaultOrigin',
-                billList: 'getBillList'
+                billList: 'getRecordList'
             })
         },
         methods: {
-            ...mapActions(['getBillList'])
+            ...mapActions(['getRecordList','removeRecord']),
+            handleEdit(data) {
+                this.$router.push({
+                    // path: '/record/update', 此方式可配合query （地址栏可见参数）
+                    name: 'recordUpdate',
+                    params: {
+                        data
+                    }
+                })
+            },
+            handleDelete(id) {
+                this.removeRecord({ id })
+            }
         },
         filters:{
             formatDate(time){

@@ -69,12 +69,11 @@
                 data = qs.stringify(data);
                 this.$refs[form].validate(async (valid) => {
                     if (valid) {
-                        let info = await this.$store.dispatch('createBillDetail', data)
+                        let info = await this.$store.dispatch('createRecord', data)
                         this.$message('添加成功')
                         setTimeout(() => {
                             this.$router.push('/record/list')
                         },200)
-
                     } else {
                         console.log('error submit!!');
                         return false;
