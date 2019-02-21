@@ -23,41 +23,45 @@ export default new Vuex.Store({
       }
     },
     actions: {
-        getUserList({commit,state}) {
+        getUserList({ commit, state }) {
             axios.get('/api/user').then(res => {
                 commit('changeUserList', res.data)
             })
         },
-        getTypeList({ commit,state }) {
+        getTypeList({ commit, state }) {
             axios.get('/api/base').then(res => {
                 commit('changeTypeList', res.data)
             })
         },
-        getBillList({ commit,state }, payload) {
+        getBillList({ commit, state }, payload) {
             let { limit = 0, page = 0 } = payload || {}
             axios.get('/api/detail').then(res => {
                 commit('changeBillList', res.data)
             })
         },
-        async createBillDetail({ commit,state,dispatch }, payload) {
+        async createBillDetail({ commit, state, dispatch }, payload) {
             let result = await axios.post('/api/detail/createDetil', payload)
             // dispatch('getBillList') //更新记录列表
             return result;
         },
-        async updateUserDetail({ commit,state,dispatch }, payload) {
+        async updateUserDetail({ commit, state, dispatch }, payload) {
             let result = await axios.post('/api/user/updateUser', payload)
             // dispatch('getUserList') //更新记录列表
             return result;
         },
-        async updateCategory( { commit,state,dispatch }, payload) {
+        async updateCategory( { commit, state, dispatch }, payload) {
             let data = await axios.post('/api/base/updateCategory', payload)
             commit('changeTypeList', data.data);
             return true;
         },
-        async removeCategory({ commit,state,dispatch }, payload) {
+        async removeCategory({ commit, state, dispatch }, payload) {
             let data = await axios.post('/api/base/remove', {"id": payload.id })
             commit('changeTypeList', data.data);
             return true;
+        },
+        async createNewUser( { commit, state, dispatch }, { data }) {
+            let res = await axios.post('/api/user/createUser', data);
+            return res
         }
     },
     getters: {

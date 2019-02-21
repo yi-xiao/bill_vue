@@ -1,10 +1,10 @@
 <template>
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-    <el-menu 
-        :default-openeds="[defaultOpens]"
-        :default-active="activePath"
-        unique-opened
-        router
+    <el-menu
+            :default-openeds="[defaultOpens]"
+            :default-active="activePath"
+            unique-opened
+            router
     >
       <el-submenu index="user">
         <template slot="title"><i class="el-icon-message"></i>用户管理</template>
@@ -41,23 +41,23 @@
 </template>
 
 <script>
-export default {
-    name: 'Navigate',
-    data() {
-        return {
-            
-        }
-    },
-    computed: {
-        defaultOpens () {
-            let { groups: { path } } = /^\/(?<path>.*)\//.exec(this.$route.path)
-            return path
+    export default {
+        name: 'Navigate',
+        data() {
+            return {
+
+            }
         },
-        activePath () {
-            return this.$route.path;
+        computed: {
+            defaultOpens () {
+                let { groups: { path } } = /^\/(?<path>.*)\//.exec(this.$route.path)
+                return path
+            },
+            activePath () {
+                return this.$route.path;
+            }
         }
     }
-}
 </script>
 
 <style>
@@ -66,12 +66,12 @@ export default {
     color: #fff;
     line-height: 60px;
   }
-  
+
   .el-aside {
     color: #333;
   }
   .el-submenu{
-      border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
   }
   .el-menu-item-group__title{
     border-bottom: 1px solid #f2f2f2;
