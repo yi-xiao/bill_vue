@@ -14,10 +14,13 @@
             </el-table-column>
             <el-table-column label="性别" width="100">
                 <template slot-scope="scope">
-                    <span>{{ format_sex(scope.row.sex) }}</span>
+                    <span>{{ scope.row.sex | formatSex }}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="age" label="年龄(岁)" width="80">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.birth | formatUserAge }}</span>
+                </template>
             </el-table-column>
             <el-table-column label="创建时间" width="140">
                 <template slot-scope="scope">
@@ -36,6 +39,7 @@
 
 <script>
     import { formatDate } from '../../../utils/date'
+    import { formatSex, formatUserAge } from '../../../utils/common_utils'
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
@@ -44,25 +48,18 @@
             return {}
         },
         methods: {
-            format_sex (sex) {
-                switch(sex){
-                    case 1:
-                        return '男'
-                        break
-                    case 2:
-                        return '女'
-                        break
-                    default:
-                        return '未完善'
-                        break
-                }
-            },
             ...mapActions(['getUserList'])
         },
         filters:{
             formatDate(time){
                 let date = new Date(time)
                 return formatDate(date, 'yyyy-MM-dd hh:mm')
+            },
+            formatSex(sex) {
+                return formatSex(sex);
+            },
+            formatUserAge(birth) {
+                return formatUserAge(birth)
             }
         },
         computed: {

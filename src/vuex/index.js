@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        defaultOrigin: 'http://127.0.0.1:3000/',
+        defaultOrigin: process.env.NODE_ENV === 'production' ? 'http://bill.static.buer.group/api/' : 'http://127.0.0.1:3000/',
         userList: [],
         typeList: [],
         recordList: [],
