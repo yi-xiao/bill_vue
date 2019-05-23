@@ -15,8 +15,14 @@
                     width="180">
             </el-table-column>
             <el-table-column
-                    prop="type"
+                    prop="text"
                     label="描述"
+                    width="250"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="type"
+                    label="类型"
                     width="250"
             >
             </el-table-column>
@@ -61,7 +67,7 @@
                     inputErrorMessage: '内容不能为空哦！'
                 }).then(async ({ value }) => {
                     const info = {
-                        "type": value
+                        "text": value
                     }
                     await this.updateCategory(info);
                     this.$message({

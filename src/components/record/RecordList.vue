@@ -17,7 +17,12 @@
                     {{ scope.row.price/100 }}
                 </template>
             </el-table-column>
-            <el-table-column prop="category.type" label="类型" width="120">
+            <el-table-column prop="category_info.text" label="说明" width="120">
+            </el-table-column>
+            <el-table-column label="类型" width="120">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.category_info.type ? '收入' : '支出' }}</span>
+                </template>
             </el-table-column>
             <el-table-column label="支付时间" width="140">
                 <template slot-scope="scope">

@@ -16,8 +16,8 @@
                     <el-option
                             v-for="item in typeList"
                             :key="item.id"
-                            :label="item.type"
-                            :value="item.id">
+                            :label="item.text"
+                            :value="item.category">
                     </el-option>
                 </el-select>
             </el-form-item>
@@ -64,7 +64,7 @@
                     "user_id": this.userValue,
                     "date": this.form.date,
                     "price": this.form.price,
-                    "type": this.typeValue,
+                    "category": this.typeValue,
                 }
                 data = qs.stringify(data);
                 this.$refs[form].validate(async (valid) => {
